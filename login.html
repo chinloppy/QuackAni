@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuackuAni | Login</title>
+  <link rel="stylesheet" href="login.css" />
+</head>
+
+<body>
+  <div class="toast" id="toast">
+    <div class="toast-icon" id="toastIcon">♡</div>
+    <div>
+      <strong id="toastTitle">Message</strong>
+      <p id="toastMessage">Text here</p>
+    </div>
+  </div>
+
+  <main class="auth-page">
+    <section class="auth-card">
+      <div class="auth-left">
+        <img src="assets/loginbg.png" alt="QuackuAni background">
+      </div>
+
+      <div class="auth-right">
+        <form class="auth-form active" id="loginForm">
+          <h2>Sign In</h2>
+          <p class="subtitle">Continue your anime discovery journey.</p>
+
+          <div class="field">
+            <input type="text" id="loginIdentity" placeholder="Email or username">
+            <small class="hint" id="loginEmailHint">Please enter a valid @email or @gmail.</small>
+          </div>
+
+          <div class="field">
+            <input type="password" id="loginPassword" placeholder="Password" maxlength="15">
+          </div>
+
+          <button type="button" class="auth-btn" onclick="loginUser()">LOGIN</button>
+
+          <p class="switch-text">
+            Don’t have an account?
+            <span onclick="showForm('signup')">Create one</span>
+          </p>
+        </form>
+
+        <form class="auth-form" id="signupForm">
+          <h2>Create Account</h2>
+          <p class="subtitle">Start saving your favorite anime picks.</p>
+
+          <div class="input-row">
+            <div class="field">
+              <input type="text" id="firstName" placeholder="First name">
+            </div>
+
+            <div class="field">
+              <input type="text" id="lastName" placeholder="Last name">
+            </div>
+          </div>
+
+          <div class="field">
+            <input type="text" id="signupUsername" placeholder="Username">
+          </div>
+
+          <div class="field">
+            <input type="email" id="signupEmail" placeholder="Email">
+            <small class="hint" id="signupEmailHint">Please enter a valid @email or @gmail.</small>
+          </div>
+
+          <div class="field">
+            <input type="password" id="signupPassword" placeholder="Password" maxlength="15">
+            
+          </div>
+
+          <p class="password-note">
+            Password must be strong. Put symbols, capital letters and numbers.
+            Maximum password length is 15 characters.
+          </p>
+
+          <button type="button" class="auth-btn" onclick="createAccount()">CREATE ACCOUNT</button>
+
+          <p class="switch-text">
+            Already a member?
+            <span onclick="showForm('login')">Sign in</span>
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="login.js"></script>
+</body>
+</html>

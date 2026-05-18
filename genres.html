@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuackuAni | Genres</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="home.html" class="logo">QuackuAni</a>
+
+    <nav>
+      <a href="home.html">HOME</a>
+      <a href="home.html#about">ABOUT</a>
+      <a href="genres.html" class="active">GENRES</a>
+      <a href="popular.html">POPULAR</a>
+      <a href="favorites.html">FAVORITES</a>
+      <a href="account.html">ACCOUNT</a>
+    </nav>
+<div class="search-box">
+
+  <span class="search-icon">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.8"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <circle cx="11" cy="11" r="7"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
+  </span>
+
+  <input 
+    type="text" 
+    id="searchInput" 
+    placeholder="Search anime..." 
+  />
+
+</div>  </header>
+
+  <section class="section page-top">
+    <h1>Choose a Genre</h1>
+    <p>Click a genre and anime related to that genre will appear below.</p>
+
+    <div class="genre-buttons" id="genreButtons"></div>
+  </section>
+
+  <section class="section anime-results-section">
+    <div class="section-title-row">
+      <h2 id="genreTitle">All Anime</h2>
+      <p id="resultCount"></p>
+    </div>
+
+    <div class="anime-grid" id="animeGrid"></div>
+  </section>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+  <script>
+    renderGenreButtons();
+    renderAnimeGrid("animeGrid", animeList);
+    setResultCount(animeList.length);
+    activateSearch("searchInput", "animeGrid", animeList);
+  </script>
+</body>
+</html>

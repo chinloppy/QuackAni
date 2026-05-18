@@ -1,0 +1,116 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuackuAni | Home</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="home.html" class="logo">QuackuAni</a>
+
+    <nav>
+      <a href="home.html" class="active">HOME</a>
+      <a href="home.html#about">ABOUT</a>
+      <a href="genres.html">GENRES</a>
+      <a href="popular.html">POPULAR</a>
+     <a href="favorites.html">FAVORITES</a>
+     <a href="account.html">ACCOUNT</a>
+    </nav>
+
+<div class="search-box">
+
+  <span class="search-icon">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.8"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <circle cx="11" cy="11" r="7"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
+  </span>
+
+  <input 
+    type="text" 
+    id="searchInput" 
+    placeholder="Search anime..." 
+  />
+
+</div>  </header>
+
+  <section class="home-hero">
+    <div class="hero-text">
+      <p class="mini-title">Anime recommendations made for your mood</p>
+      <h1>Find your next anime obsession.</h1>
+      <p>
+        Browse comfort shows, fantasy adventures, romance favorites,
+        action-packed series, and anime films worth watching.
+      </p>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <h2>About QuackuAni</h2>
+
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>Meet the Owner</h3>
+        <p>
+          QuackuAni was created by Sophia Ramos, also known as “Chin,”
+          a second-year college student from National University Mall of Asia.
+          As someone who enjoys cute visuals, cozy designs, and anime movies or series,
+          she built this website as a fun space for anime fans who want easier
+          and more aesthetic recommendations.
+        </p>
+      </div>
+
+      <div class="about-card">
+        <h3>Why “QuackuAni”?</h3>
+        <p>
+          The name QuackuAni combines “quack,” inspired by the cute duck theme
+          of the website, and “ani,” which stands for anime. Together, it creates
+          a playful and memorable name that reflects the site’s soft duck-inspired
+          design while still focusing on anime recommendations, moods, genres,
+          and shows worth discovering.
+        </p>
+      </div>
+
+      <div class="about-card">
+        <h3>Explore Anime</h3>
+        <p>
+          QuackuAni lets users browse different anime movies and series based on
+          genres, popularity, and personal mood. Each anime card leads to a
+          detailed page with its title, director, writer, synopsis, release date,
+          running time, popular quotes, and related recommendations, making it
+          easier to decide what to watch next.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title-row">
+      <h2>Recommended For You</h2>
+      <a href="popular.html" class="text-link">View all</a>
+    </div>
+
+    <div class="anime-grid" id="animeGrid"></div>
+  </section>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+  <script>
+    renderAnimeGrid("animeGrid", animeList.slice(0, 8));
+    activateSearch("searchInput", "animeGrid", animeList);
+  </script>
+</body>
+</html>

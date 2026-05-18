@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuackuAni | Account</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="account.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="home.html" class="logo">QuackuAni</a>
+
+    <nav>
+      <a href="home.html">HOME</a>
+      <a href="home.html#about">ABOUT</a>
+      <a href="genres.html">GENRES</a>
+      <a href="popular.html">POPULAR</a>
+      <a href="favorites.html">FAVORITES</a>
+      <a href="account.html" class="active">ACCOUNT</a>
+    </nav>
+  </header>
+
+  <main class="account-page">
+    <section class="account-card">
+      <h1>My Account</h1>
+      <p class="account-subtitle">Manage your QuackuAni profile here.</p>
+
+      <div class="account-box">
+        <h2>Change Username</h2>
+        <input type="text" id="newUsername" placeholder="New username">
+        <button onclick="changeUsername()">Update Username</button>
+      </div>
+
+      <div class="account-box">
+        <h2>Change Password</h2>
+        <input type="password" id="currentPassword" placeholder="Current password" maxlength="15">
+        <input type="password" id="newPassword" placeholder="New password" maxlength="15">
+        <p class="account-note">Password must include symbols, capital letters, and numbers. Max 15 characters.</p>
+        <button onclick="changePassword()">Update Password</button>
+      </div>
+
+      <button class="logout-btn" onclick="logoutAccount()">Logout</button>
+    </section>
+  </main>
+
+  <div class="account-toast" id="accountToast"></div>
+
+  <script src="account.js"></script>
+</body>
+</html>
