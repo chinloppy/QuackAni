@@ -50,11 +50,42 @@
     <div class="anime-grid" id="favoritesGrid"></div>
   </section>
 
+  <div class="review-modal" id="reviewModal">
+    <div class="review-box">
+      <button class="close-review" onclick="closeReviewModal()">×</button>
+
+      <h2 id="reviewAnimeTitle">Review Anime</h2>
+      <p class="review-subtitle">Share your thoughts after watching.</p>
+
+      <label>Watch Status</label>
+      <select id="watchStatus">
+        <option value="Plan to Watch">Plan to Watch</option>
+        <option value="Watching">Watching</option>
+        <option value="Finished">Finished</option>
+      </select>
+
+      <label>Your Rating</label>
+      <div class="review-stars" id="reviewStars">
+        <span onclick="setRating(1)">★</span>
+        <span onclick="setRating(2)">★</span>
+        <span onclick="setRating(3)">★</span>
+        <span onclick="setRating(4)">★</span>
+        <span onclick="setRating(5)">★</span>
+      </div>
+
+      <label>Your Thoughts</label>
+      <textarea id="reviewText" placeholder="Write your thoughts here..."></textarea>
+
+      <button class="save-review-btn" onclick="saveReview()">Save Review</button>
+    </div>
+  </div>
+
   <script src="data.js"></script>
   <script src="script.js"></script>
   <script>
     renderFavoritesPage();
     activateFavoriteSearch("searchInput");
   </script>
+
 </body>
 </html>

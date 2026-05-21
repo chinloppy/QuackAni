@@ -270,19 +270,60 @@ function renderFavoritesPage() {
   if (!container) return;
 
   const favorites = getFavorites();
+  const reviews = getReviews();
+
   const favoriteAnime = animeList.filter(anime => favorites.includes(anime.id));
 
   if (favoriteAnime.length === 0) {
     container.innerHTML = `
-      <div class="no-results">
-        No favorites yet. Add your favorite anime that you want to binge watch!
+      <div class="favorites-empty">
+        <div class="empty-heart">♡</div>
+        <h2>No favorites yet!</h2>
+        <p>Add your next anime to binge watch!</p>
+        <a href="popular.html">Browse Anime</a>
       </div>
     `;
+
+    setResultCount(0);
     return;
   }
 
-  renderAnimeGrid("favoritesGrid", favoriteAnime);
+  container.innerHTML = favoriteAnime.map(anime => {
+    const review = reviews[anime.id];
+
+    return `
+      <article class="anime-card" onclick="openDetails('${anime.id}')">
+        <div class="poster-box">
+          <img src="${anime.image}" alt="${anime.title}">
+          <div class="hover-label">View Details</div>
+        </div>
+
+        <div class="card-info">
+          <h3>${anime.title}</h3>
+          <p>${anime.genre.slice(0, 2).join(" • ")} • ${anime.type}</p>
+
+          ${review ? `
+            <div class="saved-review">
+              <p class="yellow-stars">${makeStars(review.rating)}</p>
+              <p><strong>Status:</strong> ${review.status}</p>
+              <p>${review.thoughts}</p>
+            </div>
+          ` : ""}
+
+          <button 
+            class="review-btn"
+            onclick="event.stopPropagation(); openReviewModal('${anime.id}')"
+          >
+            ${review ? "Edit Review" : "Write Review"}
+          </button>
+        </div>
+      </article>
+    `;
+  }).join("");
+
+  setResultCount(favoriteAnime.length);
 }
+
 
 function activateFavoriteSearch(inputId) {
   const input = document.getElementById(inputId);
@@ -317,8 +358,104 @@ function activateFavoriteSearch(inputId) {
       return;
     }
 
-    renderAnimeGrid("favoritesGrid", favoriteAnime);
+  });
+}
+let currentReviewAnimeId = null;
+let selectedRating = 0;
+
+function getReviewsKey() {
+  return `reviews_${getCurrentUser()}`;
+}
+
+function getReviews() {
+  return JSON.parse(localStorage.getItem(getReviewsKey())) || {};
+}
+
+function saveReviews(reviews) {
+  localStorage.setItem(getReviewsKey(), JSON.stringify(reviews));
+}
+
+function openReviewModal(animeId) {
+  currentReviewAnimeId = animeId;
+
+  const anime = animeList.find(item => item.id === animeId);
+  const reviews = getReviews();
+  const savedReview = reviews[animeId];
+
+  document.getElementById("reviewAnimeTitle").textContent = `Review ${anime.title}`;
+  document.getElementById("watchStatus").value = savedReview ? savedReview.status : "Plan to Watch";
+  document.getElementById("reviewText").value = savedReview ? savedReview.thoughts : "";
+
+  selectedRating = savedReview ? savedReview.rating : 0;
+  updateStars();
+
+  document.getElementById("reviewModal").classList.add("active");
+}
+
+function closeReviewModal() {
+  document.getElementById("reviewModal").classList.remove("active");
+  currentReviewAnimeId = null;
+  selectedRating = 0;
+}
+
+function setRating(rating) {
+  selectedRating = rating;
+  updateStars();
+}
+
+function updateStars() {
+  const stars = document.querySelectorAll("#reviewStars span");
+
+  stars.forEach((star, index) => {
+    star.classList.toggle("active", index < selectedRating);
   });
 }
 
+function saveReview() {
+  if (!currentReviewAnimeId) return;
+
+  const status = document.getElementById("watchStatus").value;
+  const thoughts = document.getElementById("reviewText").value.trim();
+
+  if (selectedRating === 0) {
+  showReviewNotice("Please choose a star rating first.");
+  return;
+}
+
+if (!thoughts) {
+  showReviewNotice("Quacku needs your thoughts! Please write something about the anime.");
+  return;
+}
+
+  const reviews = getReviews();
+
+  reviews[currentReviewAnimeId] = {
+    status: status,
+    rating: selectedRating,
+    thoughts: thoughts
+  };
+
+  saveReviews(reviews);
+  closeReviewModal();
+  renderFavoritesPage();
+}
+
+function makeStars(rating) {
+  return "★".repeat(rating) + "☆".repeat(5 - rating);
+}
+function showReviewNotice(message) {
+  const oldNotice = document.querySelector(".review-notice");
+
+  if (oldNotice) oldNotice.remove();
+
+  const notice = document.createElement("div");
+  notice.className = "review-notice";
+  notice.textContent = message;
+
+  document.querySelector(".review-box").appendChild(notice);
+
+  setTimeout(() => {
+    notice.remove();
+  }, 2500);
+}
 window.addEventListener("DOMContentLoaded", applySearchFromUrl);

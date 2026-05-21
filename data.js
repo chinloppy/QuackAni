@@ -247,6 +247,25 @@ const animeList = [
     ]
   },
   {
+  id: "a-sign-of-affection",
+  title: "A Sign of Affection",
+  type: "Series",
+  director: "Yuta Murano",
+  writer: "Suu Morishita",
+  genre: ["Romance", "Slice of Life", "Drama"],
+  runningTime: "24 minutes per episode",
+  releaseDate: "January 6, 2024",
+  image: "assets/asoa-banner.jpg",
+  banner: "assets/asoa2.png",
+  plot: "Yuki Itose is a kind-hearted college student who has been deaf since birth. Although she communicates mainly through sign language and text messages, she sometimes feels isolated from the fast-moving world around her. Her life changes after meeting Itsuomi Nagi, a well-traveled and open-minded upperclassman fascinated by different languages and cultures. Unlike others, Itsuomi approaches Yuki naturally and becomes interested in learning sign language to communicate with her better. As their relationship deepens, Yuki begins opening herself up to new experiences and emotions.",
+  synopsis: "A Sign of Affection is a gentle romance anime about communication, understanding, and love beyond words. The series thoughtfully portrays deaf culture and highlights how genuine effort and compassion can connect people from different worlds.",
+  quotes: [
+    "There are many ways to say how you feel.",
+    "Your world can become bigger through one person.",
+    "Love can be understood without words."
+  ]
+},
+  {
     id: "a-silent-voice",
     title: "A Silent Voice",
     type: "Movie",
@@ -615,7 +634,7 @@ const animeList = [
     "This town is cursed.",
     "Some patterns are impossible to escape."
   ]
-},
+}
 
 ];
 const genres = ["All", "Action", "Adventure", "Comedy", "Dark Fantasy", "Drama", "Family", "Fantasy", "Romance", "Slice of Life", "Supernatural"];
